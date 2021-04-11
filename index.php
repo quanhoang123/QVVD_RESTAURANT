@@ -93,7 +93,7 @@ if ($is_authenticated) {
                                     if ($is_authenticated) {
                                         echo '
                                         <li></li>
-                                        <li><a href="modal/logout.php">Logout</a></li>
+                                        <li><a href="modal/logout.php">' . $user["user_name"] . '</a></li>                                     
                                         ';
                                     } else {
                                         echo '
