@@ -84,17 +84,20 @@ if ($is_authenticated) {
 
 <body>
 
-    <nav class="navbar navbar-expand-sm bg-light">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link 1</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link 2</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link 3</a>
-            </li>
+    <nav class="navbar navbar-expand-sm bg-light fixed-top">
+        <ul class="navbar-nav"> 
+            <?php
+            if ($is_authenticated) {
+                echo '
+                    <li class="nav-item" ></li>
+                    <li class="nav-item"><a href="modal/logout.php" class="nav-link">' . $user["user_name"] . '</a></li>';
+            } else {
+                echo '
+                    <li><a data-toggle="modal" data-target="#login" >Login</a></li>
+                    <li><a data-toggle="modal" data-target="#register" >Register</a></li>';
+            }
+            ?>
+
         </ul>
     </nav>
     <br>

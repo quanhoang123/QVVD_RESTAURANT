@@ -48,10 +48,9 @@ if ($is_authenticated) {
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <!-- <script src="js/bootstrap.min.js"></script> -->
+   
 
 </head>
-
 <style>
    .fake {
         margin-left:100px;
@@ -102,7 +101,6 @@ if ($is_authenticated) {
                                         ';
                                     }
                                     ?>
-                                    <li><a href="#" class="btn wishlist"><i class="fa fa-heart"></i><span>(0)</span></a></li>
                                     <li> <a href="view-cart.php" class="btn wishlist"><i class="fa fa-shopping-cart"></i><span>(0)</span></a></li>
                                 </ul>
                             </div>
@@ -289,7 +287,7 @@ if ($is_authenticated) {
     <div class="modal fade container-fluid" id="modal_booking" tabindex="-1" role="dialog">
         <div class="modal-dialog fake" role="document">
             <div class="modal-content container">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <button type="button" class="close-box float-right" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                 <div class="modal-body">
                     <h2 class="block-title text-center">
                         Đặt trước với chúng tôi
@@ -518,11 +516,11 @@ if ($is_authenticated) {
 
                             </div>
                             <div class="tab-title-menu">
-                                <h2>Wedding</h2>
+                                <h2>Event</h2>
 
                             </div>
                             <div class="tab-title-menu">
-                                <h2>DRINKS</h2>
+                                <h2>Drinks</h2>
 
                             </div>
                         </div>
@@ -638,7 +636,7 @@ if ($is_authenticated) {
                         <h2 class="block-title text-center">
                             Our Team
                         </h2>
-                        <p class="title-caption text-center">Ăn gì cũng được nhưng không ăn gian ăn chùng nha. </p>
+                        <p class="title-caption text-center"> </p>
                     </div>
                     <div class="team-box">
                         <div class="row">
@@ -743,27 +741,7 @@ if ($is_authenticated) {
         </div>
     </div>
     <br><br>
-    <div id="footer" class="footer-main">
-        <div class="footer-news pad-top-100 pad-bottom-70 parallax">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
-                            <h2 class="ft-title color-white text-center"> Comment </h2>
-                            <p></p>
-                        </div>
-                        <form>
-                            <input type="email" placeholder="Enter your e-mail id">
-                            <a href="#" class="orange-btn"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></a>
-                        </form>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        <br><br>
-
+    <div id="footer" class="footer-main">   
         <div class="footer-box pad-top-70">
             <div class="container">
                 <div class="row">
