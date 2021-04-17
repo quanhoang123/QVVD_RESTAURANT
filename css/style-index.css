@@ -213,22 +213,6 @@ body {
    	back to top
 -------------------------------------------------------------------*/
 
-.scrollup {
-    width: 40px;
-    height: 40px;
-    text-indent: -9999px;
-    opacity: 0.3;
-    position: fixed;
-    bottom: 20px;
-    right: 40px;
-    display: none;
-    background: url(../images/icon_top.png) no-repeat;
-}
-
-.scrollup:hover {
-    opacity: 0.8;
-}
-
 
 /*------------------------------------------------------------------
     HEADER AREA
@@ -814,11 +798,18 @@ body {
     width: 92px;
     height: 92px;
     line-height: 92px;
+    -moz-border-radius: 92px;
+    -webkit-border-radius: 92px;
+    border-radius: 92px;
+    -moz-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    -webkit-transform: translate(0, -50%);
     transform: translate(0, -50%);
     color: #000;
-    font-size: 16px;
+    font-size: 12px;
     font-family: 'Verdana', sans-serif;
     text-align: center;
+    letter-spacing: .5px;
 }
 
 .offer-item div h3 {
@@ -1884,7 +1875,7 @@ select:focus,
 
 #booking {
     font-family: 'PT Sans', sans-serif;
-    background-image: url(img/interface/booking.jpg);
+    background-image: url(../img/interface/booking.jpg);
     background-size: cover;
     background-position: center;
 }

@@ -23,8 +23,6 @@
   
   if(isset($_POST['add'])) {
   
-   
-
    $dbProduct->saveProduct($_POST);
 
    

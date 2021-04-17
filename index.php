@@ -1,15 +1,11 @@
 <?php
- require_once "modal/connect.php";
- $dt = new database();
- $dt->connect();
+require_once "modal/connect.php";
+$dt = new database();
+$dt->connect();
 if (array_key_exists('add-to-cart', $_POST)) {
     $id = $_POST["add-to-cart"];
     header("location:add-cart.php?id=" . $id);
 }
-
-
-?>
-<?php
 session_start();
 $is_authenticated = isset($_SESSION['isAuthenticated']) ? $_SESSION['isAuthenticated'] : false;
 if ($is_authenticated) {
@@ -17,13 +13,10 @@ if ($is_authenticated) {
 }
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
     <!-- Basic -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -46,14 +39,19 @@ if ($is_authenticated) {
     <!-- axios -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-   
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- <script src="js/bootstrap.min.js"></script> -->
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
 </head>
+
 <style>
-   .fake {
-        margin-left:100px;
+    .fake {
+        margin-left: 100px;
+    }
+
+    .ftco-section-reservation {
+        clear: both;
     }
 </style>
 
@@ -88,6 +86,8 @@ if ($is_authenticated) {
                                     <li><a href="#product">Product</a></li>
                                     <li><a href="">Book Table</a></li>
                                     <li><a href="#footer">Contact us</a></li>
+
+                                  
                                     <?php
                                     if ($is_authenticated) {
                                         echo '
@@ -101,6 +101,7 @@ if ($is_authenticated) {
                                         ';
                                     }
                                     ?>
+
                                     <li> <a href="view-cart.php" class="btn wishlist"><i class="fa fa-shopping-cart"></i><span>(0)</span></a></li>
                                 </ul>
                             </div>
@@ -129,6 +130,10 @@ if ($is_authenticated) {
             </div>
         </div>
     </div>
+
+
+
+
     <!-- Bottom Bar Start -->
     <div class="bottom-bar">
         <div class="container-fluid">
@@ -136,14 +141,14 @@ if ($is_authenticated) {
                 <div class="col-md-3">
                     <div class="logo">
                         <a href="index.html">
-                            <img src="img/interface/logo.jpg" alt="Logo" width="25%">
+                            <img src="img/interface/logo.jpg" alt="Logo" width="35%">
                         </a>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="search">
                         <form action="" method="get">
-                            <input type="text" name="search" placeholder="Search">
+                            <input type="text" name="search" placeholder="Search name foods">
                             <button name="ok"><i class="fa fa-search"></i></button>
                         </form>
                     </div>
@@ -152,8 +157,9 @@ if ($is_authenticated) {
             <div class="col-md-3">
             </div>
             <div class="col-md-9">
-                <?php                            
-                 $dt->searchProd();
+                <?php
+
+                $dt->searchProd();
                 // $dt->dis_connect();
                 ?>
             </div>
@@ -220,7 +226,7 @@ if ($is_authenticated) {
             </div>
         </div>
     </div>
-    
+
     <!-- Login Modal -->
     <div class="modal fade" id="login">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -263,34 +269,15 @@ if ($is_authenticated) {
     </div>
 
     <!-- Bottom Bar End -->
-    <div class="modal fade" id="modal_search" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <div class="modal-body">
-                    <img id='id' alt="" width="100px" height="100px;  " />
-                </div>
-                <div class="col-md-12 description">
-                    <h4 id='name_product' class="col-md-9"></h4>
-                    <h5 id='price' class="col-md-3"></h5>
-                </div>
-                <div class="modal-footer foot" style="float:left">
-                    <form action='' method="post">
-                        <button name="add-to-cart" value="<?php echo $room['id_room'] ?>"><i class="fa fa-shopping-cart"></i></button>
-                        <button href=""><i class="fa fa-heart"></i></button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
     <div class="modal fade container-fluid" id="modal_booking" tabindex="-1" role="dialog">
         <div class="modal-dialog fake" role="document">
             <div class="modal-content container">
-                <button type="button" class="close-box float-right" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                 <div class="modal-body">
                     <h2 class="block-title text-center">
-                        Đặt trước với chúng tôi
+                        Reservation with us
                     </h2>
                     <div id="reservation" class="reservations-main pad-top-100 pad-bottom-100">
                         <div id="booking" class="section">
@@ -301,16 +288,16 @@ if ($is_authenticated) {
                                             <div class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
                                             </div>
                                             <h4 class="form-title">BOOKING FORM</h4>
-                                            <p>Xin mời quý khách </p>
+
                                             <form role="form" method="post" action="Email/phpsentmail.php">
 
                                                 <div class="row">
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <span class="form-label">Select rooms</span>
-                                                            <select class="form-control" name="room">
+                                                            <select class="form-control content" name="room">
                                                                 <?php
-                                                                
+
                                                                 // select du lieu truy van la new prod
                                                                 $sql = 'select * from room_restaurant';
                                                                 $getAll = $dt->select($sql);
@@ -326,7 +313,6 @@ if ($is_authenticated) {
                                                             <span class="form-label">Select food</span>
                                                             <select class="form-control" name="foods">
                                                                 <?php
-                                                                
                                                                 // select du lieu truy van la new prod
                                                                 $sql = 'select * from product p 
                                                                     INNER JOIN Product_category c
@@ -336,17 +322,19 @@ if ($is_authenticated) {
                                                                 foreach ($getAll as $product) {
                                                                 ?>
                                                                     <option><?php echo $product['name_newProd'] ?></option>
-                                                                <?php } ?>
+                                                                <?php
+
+                                                                } ?>
                                                             </select>
                                                             <span class="select-arrow"></span>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-4">
+                                                    <!-- <div class="col-md-4">
                                                         <div class="form-group">
                                                             <span class="form-label">Email</span>
                                                             <input class="form-control" type="email" name="email" type="text" placeholder="Email">
                                                         </div>
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-3">
@@ -371,7 +359,7 @@ if ($is_authenticated) {
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <span class="form-label">Children (0-17)</span>
-                                                            <input class="form-control" type="number" name="childrent" placeholder="Input number" />
+                                                            <input class="form-control" type="number" name="children" placeholder="Input number" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -394,11 +382,9 @@ if ($is_authenticated) {
                                                             <input class="form-control" type="text" name="time-picker" id="time-picker" placeholder="Time" data-error="Time is required." />
                                                         </div>
                                                     </div>
-
-
                                                 </div>
                                                 <div class="reserve-book-btn text-center">
-                                                    <button class="hvr-underline-from-center " type="submit" name="submit">BOOK MY TABLE </button>
+                                                    <button class="hvr-underline-from-center" type="submit" name="submit">BOOK MY TABLE </button>
                                                 </div>
                                             </form>
                                         </div>
@@ -407,9 +393,6 @@ if ($is_authenticated) {
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer foot" style="float:left">
-
                 </div>
             </div>
         </div>
@@ -433,9 +416,9 @@ if ($is_authenticated) {
                         <h2 class="block-title"> About Us </h2>
                         <h3>IT STARTED, QUITE SIMPLY, LIKE THIS....</h3>
                         <p> In our restaurant, you can try quality dishes cooked by the owner and his team. Fresh seasonal products are available on every menu.
-                            The restaurant is open from 08:00 to 23:00. Meals are served from 12:00 to 14:00 and from 18:30 to 21:00. 
+                            The restaurant is open from 08:00 to 23:00. Meals are served from 12:00 to 14:00 and from 18:30 to 21:00.
                             The restaurant is closed on Mondays and Tuesdays and also on Sunday evenings in winter.</p>
-                                                                    
+
                         <p>Tới đây tới đây nào mọi người</p>
                     </div>
                 </div>
@@ -455,8 +438,8 @@ if ($is_authenticated) {
                     </div>
                     <div class="special-box">
                         <div id="owl-demo">
-                            <?php                          
-                            
+                            <?php
+
                             $sql = 'select * from product p 
                                 INNER JOIN Product_category c
                                 on (p.id_prodCate=c.id_prodCate)         
@@ -494,6 +477,52 @@ if ($is_authenticated) {
         </div>
     </div>
     <!-- END special-menu -->
+
+
+    <!-- end menu -->
+    <br><br><br><br>
+    <div id="our_team" class="team-main pad-top-100 pad-bottom-100 parallax">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
+                        <h2 class="block-title text-center">
+                            Our Team
+                        </h2>
+                        <p class="title-caption text-center">Ăn gì cũng được nhưng không ăn gian ăn chùng nha. </p>
+                    </div>
+                    <div class="team-box">
+                        <div class="row">
+                            <?php
+
+                            $sql = 'select * from image_member';
+                            $getAll = $dt->select($sql);
+                            foreach ($getAll as $img) {
+                            ?>
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="sf-team">
+                                        <div class="thumb">
+                                            <a href="#"><img src="<?php echo $img['image_mem']; ?>" alt=""></a>
+                                        </div>
+                                        <div class="text-col">
+                                            <h1><?php echo $img['name_mem']; ?></h1>
+                                            <p><?php echo $img['Note']; ?></p>
+                                            <ul class="team-social">
+                                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="menu" class="menu-main pad-top-100 pad-bottom-100">
         <div class="container">
             <div class="row">
@@ -516,19 +545,20 @@ if ($is_authenticated) {
 
                             </div>
                             <div class="tab-title-menu">
-                                <h2>Event</h2>
+                                <h2>Wedding</h2>
 
                             </div>
                             <div class="tab-title-menu">
-                                <h2>Drinks</h2>
+                                <h2>DRINKS</h2>
 
                             </div>
                         </div>
                         <div class="slider slider-single">
-
+                            <!-- Tab pen product  -->
+                            <!-- tab product wedding -->
                             <div>
                                 <?php
-                               
+
                                 $sql = 'select * from wedding_img';
                                 $getAll = $dt->select($sql);
                                 foreach ($getAll as $wedding) {
@@ -551,7 +581,7 @@ if ($is_authenticated) {
                             <!-- tab product wedding -->
                             <div>
                                 <?php
-                            
+
                                 $sql = 'select * from wedding_img';
                                 $getAll = $dt->select($sql);
                                 foreach ($getAll as $wedding) {
@@ -574,7 +604,7 @@ if ($is_authenticated) {
                             <!-- tab product wedding -->
                             <div>
                                 <?php
-                               
+
                                 $sql = 'select * from wedding_img';
                                 $getAll = $dt->select($sql);
                                 foreach ($getAll as $wedding) {
@@ -597,7 +627,7 @@ if ($is_authenticated) {
                             <!-- tab product drink -->
                             <div>
                                 <?php
-                                
+
                                 $sql = 'select * from drinks';
                                 $getAll = $dt->select($sql);
                                 foreach ($getAll as $drinks) {
@@ -628,47 +658,6 @@ if ($is_authenticated) {
     </div>
     <!-- end menu -->
 
-    <div id="our_team" class="team-main pad-top-100 pad-bottom-100 parallax">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
-                        <h2 class="block-title text-center">
-                            Our Team
-                        </h2>
-                        <p class="title-caption text-center"> </p>
-                    </div>
-                    <div class="team-box">
-                        <div class="row">
-                            <?php
-                       
-                            $sql = 'select * from image_member';
-                            $getAll = $dt->select($sql);
-                            foreach ($getAll as $img) {
-                            ?>
-                                <div class="col-md-3 col-sm-6">
-                                    <div class="sf-team">
-                                        <div class="thumb">
-                                            <a href="#"><img src="<?php echo $img['image_mem']; ?>" alt=""></a>
-                                        </div>
-                                        <div class="text-col">
-                                            <h1><?php echo $img['name_mem']; ?></h1>
-                                            <p><?php echo $img['Note']; ?></p>
-                                            <ul class="team-social">
-                                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            <?php } ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div id="product" class="gallery-main pad-top-100 pad-bottom-100">
         <div class="container">
@@ -676,13 +665,13 @@ if ($is_authenticated) {
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
                         <h2 class="block-title text-center">
-                            Sản phẩm của chúng tôi
+                            Our rooms
                         </h2>
-                        <p class="title-caption text-center">Mời các bạn thưởng thức lựa chọn ẩm thực mình muốn </p>
+                        <p class="title-caption text-center">Welcome you</p>
                     </div>
                     <div class="gal-container clearfix">
                         <?php
-                     
+
                         $sql = 'select * from room_restaurant';
                         $getAll = $dt->select($sql);
                         foreach ($getAll as $room) {
@@ -705,7 +694,7 @@ if ($is_authenticated) {
                                                 </div>
                                                 <div class="modal-footer foot" style="float:left">
                                                     <form action='' method="post">
-                                                        <button name="add-to-cart" value="<?php echo $room['id_room'] ?>"><i class="fa fa-shopping-cart"></i></button>
+                                                        <button name="add-to-cart" value="<?php echo $product['id_room'] ?>"><i class="fa fa-shopping-cart"></i></button>
                                                         <button href=""><i class="fa fa-heart"></i></button>
                                                     </form>
                                                 </div>
@@ -722,26 +711,29 @@ if ($is_authenticated) {
         </div>
     </div>
 
-    <div id="blog" class="blog-main pad-top-100 pad-bottom-100 parallax">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <h2 class="block-title text-center">
-                        Our Blog
-                    </h2>
-                    <div class="blog-box clearfix">
-                    </div>
-                    <!-- end blog-box -->
-                    <div class="blog-btn-v">
-                        <a class="hvr-underline-from-center" href="#">View the Blog</a>
+    <br><br>
+    <div id="footer" class="footer-main">
+        <div class="footer-news pad-top-100 pad-bottom-70 parallax">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
+                            <h2 class="ft-title color-white text-center"> Comment </h2>
+                            <p></p>
+                        </div>
+                        <form>
+                            <input type="email" placeholder="Enter your e-mail id">
+                            <a href="#" class="orange-btn"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></a>
+                        </form>
                     </div>
 
                 </div>
             </div>
         </div>
-    </div>
-    <br><br>
-    <div id="footer" class="footer-main">   
+
+
+
+
         <div class="footer-box pad-top-70">
             <div class="container">
                 <div class="row">
@@ -826,10 +818,6 @@ if ($is_authenticated) {
         </div>
     </div>
 
-    <!-- back to top -->
-    <a href="#" class="scrollup" style="display: none;">Scroll</a>
-
-
     <!-- ALL JS FILES -->
     <script src="js/all.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -886,14 +874,16 @@ if ($is_authenticated) {
             });
         });
     </script>
+
     <script>
         function switchAuthModal() {
             var modalLogin = $('#login');
-            var modalSignUp = document.getElementById("register");
-            $('#login').modal("togge");
+            var modalSignUp = document.getElementById("#register");
+            $('#login').modal("toggle");
             $('#register').modal("toggle");
         }
     </script>
+
     <!-- modal show detail product -->
     <script>
         const button = document.getElementsByClassName('show');
@@ -907,12 +897,10 @@ if ($is_authenticated) {
                         document.getElementById('price').innerText = response.data.price;
                         document.getElementById('id').src = response.data.image_room;
                     });
-
                 } catch (err) {
                     console.error(`Error: ${err}`);
                 }
             });
-
         });
     </script>
 

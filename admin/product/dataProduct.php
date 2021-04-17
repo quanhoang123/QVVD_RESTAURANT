@@ -25,8 +25,8 @@ class DatabaseProduct{
     public function saveProduct ($post){
 
         
-     echo  $name_newProd = $this->dbProduct->real_escape_string($_POST['name_product']);
-      echo  $id_prodCate = $this->dbProduct->real_escape_string($_POST['id_prodCate']);
+    echo  $name_newProd = $this->dbProduct->real_escape_string($_POST['name_product']);
+    echo  $id_prodCate = $this->dbProduct->real_escape_string($_POST['id_prodCate']);
         $image = $this->dbProduct->real_escape_string($_POST['image']);
         $price = $this->dbProduct->real_escape_string($_POST['price']);
         $old_price = $this->dbProduct->real_escape_string($_POST['old_price']);
@@ -38,7 +38,7 @@ class DatabaseProduct{
         $create_date = $this->dbProduct->real_escape_string($_POST['day']);
 
 
-      //  $image = 'img-product/'. $image;
+        $image = 'img-product/'. $image;
         
         $insert = "INSERT INTO product (name_newProd,id_prodCate,`image`,old_price,price,create_date,quantity,descriptions,`status`) VALUES('$name_newProd','$id_prodCate','$image','$old_price','$price','$create_date','$quantity','$descriptions','$status')";
         $result=$this->dbProduct->query($insert);

@@ -27,7 +27,7 @@ class DatabaseRoom {
         $created_day = $this->dbRoom->real_escape_string($_POST['created_day']);
         $quantity_person= $this->dbRoom->real_escape_string($_POST['quantity_person']);
         $description = $this->dbRoom->real_escape_string($_POST['description']);
-       // $image_room = 'img-room/'. $image;
+        $image_room = 'img-room/'. $image;
         
         $insert = "INSERT INTO room_restaurant (name_room,category_id,image_room,`description`,price,created_day,quantity_person)VALUES('$name_room','$category_id','$image_room','$description','$price','$created_day','$quantity_person')";
         $result=$this->dbRoom->query($insert);
